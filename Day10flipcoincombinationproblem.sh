@@ -56,5 +56,52 @@ function Doublet() {
 	TTpercentage=$((TT*10))
 	coinDoublet=([HH]=$HHpercentage [HT]=$HTpercentage [TH]=$HHpercentage [TT]=$TTpercentage)
 }
+
+function Triplet() {
+	noOfLoops=0
+	HHH=0 HTT=0 THH=0 THT=0 HTH=0 HHT=0 TTH=0 TTT=0
+	while [ $noOfLoops -lt 10 ]
+	do
+		r=`printf "%s\n" {0..1}{0..1}{0..1} | shuf -n1`
+		case $r in
+			$Heads$Heads$Heads)
+				((HHH++))
+			;;
+			$Heads$Tails$Tails)
+				((HTT++))
+			;;
+			$TailS$Heads$Tails)
+				((THT++))
+			;;
+			$Tails$Tails$Heads)
+				((TTH++))
+			;;
+			$Tails$Heads$Heads)
+				((THH++))
+			;;
+			$Heads$Tails$Heads)
+				((HTH++))
+			;;
+			$Heads$Heads$Tails)
+				((HHT++))
+			;;
+			$Tails$Tails$Tails)
+				((TTT++))
+			;;
+		esac
+		((noOfLoops++))
+	done
+	HHHpercentage=$(($HHH*10))
+	HTHpercentage=$(($HTH*10))
+	THHpercentage=$(($THH*10))
+	TTHpercentage=$(($TTH*10))
+	HHTpercentage=$(($HHT*10))
+	THTpercentage=$(($THT*10))
+	HTTpercentage=$(($HTT*10))
+	TTTpercentage=$(($TTT*10))
+	coinTriplet=([HHH]=$HHHpercentage [HTH]=$HTHpercentage [THH]=$THHpercentage [TTH]=$TTHpercentage [HHT]=$HHTpercentage [THT]=$THTpercentage [HTT]=$HTTpercentage [HTH]=$TTTpercentage)
+}
+
 Singlet
 Doublet
+Triplet
