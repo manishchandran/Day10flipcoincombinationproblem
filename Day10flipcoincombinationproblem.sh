@@ -19,3 +19,13 @@ function HeadOrTail() {
 }
 
 
+function Singlet() {
+	while [ $noOfLoops -lt 10 ]
+	do
+		HeadOrTail
+	done
+	Headpercentage=$(($noOfheads*10))
+	Tailpercentage=$(($noOftails*10))
+	coinSinglet=([H]=$Headpercentage [T]=$Tailpercentage)
+}
+Singlet
